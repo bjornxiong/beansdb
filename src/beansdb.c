@@ -1648,7 +1648,7 @@ static int server_socket(const int port, const bool is_udp) {
 static void usage(void) {
     printf(PACKAGE " " VERSION "\n");
     printf("-p <num>      TCP port number to listen on (default: 7900)\n"
-           "-l <ip_addr>  interface to listen on, default is INDRR_ANY\n"
+           "-l <ip_addr>  interface to listen on, default is INADDR_ANY\n"
            "-d            run as a daemon\n"
            "-P <file>     save PID in <file>, only used with -d option\n"
            "-L <file>     log file\n"
