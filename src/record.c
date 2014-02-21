@@ -28,7 +28,7 @@
 #include "quicklz.h"
 //#include "fnv1a.h"
 
-const int PADDING = 256;
+const int PADDING = 256;   /*1 0000 0000 PADDING是为了留出低8位，来记录bucket的下标*/
 const int32_t COMPRESS_FLAG = 0x00010000;
 const int32_t CLIENT_COMPRESS_FLAG = 0x00000010;
 const float COMPRESS_RATIO_LIMIT = 0.7;
@@ -36,7 +36,7 @@ const int TRY_COMPRESS_SIZE = 1024 * 10;
 
 uint32_t gen_hash(char *buf, int len)
 {
-    uint32_t hash = len * 97;
+    uint32_t hash = len * 97;/*97 = 0110 0001*/
     if (len <= 1024){
         hash += fnv1a(buf, len);
     }else{
@@ -173,7 +173,14 @@ DataRecord* decode_record(char* buf, uint32_t size, bool decomp)
     return r2;
 }
 
-
+/*
+  从f中读取一个DataRecord  
+  1.分步骤读取。  
+    1.1.首先从文件中读一个PADDING出来，这是一个DataRecord所占的最小的文件空间。  
+    1.2.计算读取的内容中是否包含完整的value  
+  2.crc校验  
+  3.解压缩
+*/
 DataRecord* read_record(FILE *f, bool decomp)
 {
     DataRecord *r = (DataRecord*) malloc(PADDING + sizeof(char*));
@@ -191,9 +198,14 @@ DataRecord* read_record(FILE *f, bool decomp)
     }
   
     uint32_t crc_old = r->crc;
+    /*
+    1.2  
+    计算PADDING的数据中除了DataRecord和它的key以外，还有多少数据。  
+    sizeof(char*)是DataRecord最后的key[0] 
+     */
     int read_size = PADDING - (sizeof(DataRecord) - sizeof(char*)) - ksz;
     if (vsz < read_size) {
-        r->value = r->key + ksz + 1;
+        r->value = r->key + ksz + 1;/*key的最后一个字节是结束符'\0'，所以加1*/
         r->free_value = false;
         memmove(r->value, r->key + ksz, vsz);
     }else{
@@ -282,6 +294,7 @@ READ_END:
     return NULL; 
 }
 
+/*encode与compress的不同是，encode是整个的记录，这包括crc，而compress只是K、V*/
 char* encode_record(DataRecord *r, int *size)
 {
     compress_record(r);
@@ -306,6 +319,7 @@ char* encode_record(DataRecord *r, int *size)
     return buf;
 }
 
+/*向文件f中写记录r,f已经定位*/
 int write_record(FILE *f, DataRecord *r) 
 {
     int size;
@@ -319,6 +333,15 @@ int write_record(FILE *f, DataRecord *r)
     return 0;
 }
 
+/*
+  遍历DataFile中的DataRecord加入到tree中。  
+  注意这个函数的调用情境 : 在bc_scan时，发现对应hintfile不存在后才调用的。  
+  bc_open是datafile决定tree(因为tree一开始是不存在的)，  
+  而optimize是tree决定datafile(因为tree中的数据是最新的)  
+  1.准备工作：打开datafile，新建一个htree来记录hint  
+  2.依次读取DataRecord，加入到tree中。  
+  3.新建hintfile文件。  
+*/
 void scanDataFile(HTree* tree, int bucket, const char* path, const char* hintpath)
 {
     MFile *f = open_mfile(path);
@@ -365,7 +388,7 @@ void scanDataFile(HTree* tree, int bucket, const char* path, const char* hintpat
     close_mfile(f);
     build_hint(cur_tree, hintpath);
 }
-
+/*只考察befor之前的record */
 void scanDataFileBefore(HTree* tree, int bucket, const char* path, time_t before)
 {
     MFile *f = open_mfile(path);
@@ -432,6 +455,17 @@ void update_items(Item *it, void *args)
     }
 }
 
+/*
+优化，通过hintpath的统计记录，来决定是否优化data文件  
+将有效record对应的item保存至一棵新建的树中，也就是用来进行hint的tree  
+1.估算是否值得优化,如果是，打开一个临时文件进行写入  
+2.扫面datafile中的每个DataRecord，看看它  
+  a.在tree中不存在  
+  b.改变了位置——或者不在这个文件中，或者在文件中的其它位置  
+  c.ver < 0  
+  如果以上条件都不满足，才能写进新的文件中  
+3.修改临时文件名，完成优化。 
+*/
 uint32_t optimizeDataFile(HTree* tree, int bucket, const char* path, const char* hintpath,
     bool skipped, uint32_t max_data_size, int last_bucket, const char *lastdata, const char *lasthint) 
 {

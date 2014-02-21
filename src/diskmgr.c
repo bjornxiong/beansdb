@@ -28,9 +28,10 @@ struct disk_mgr {
     int ndisks;
 };
 
+/*check file and new a instance of Mgr */
 Mgr* mgr_create(const char **disks, int ndisks)
 {
-    char *cwd = getcwd(NULL, 0);
+    char *cwd = getcwd(NULL, 0);/*返回当前的工作目录*/
     Mgr *mgr = (Mgr*) malloc(sizeof(Mgr));
     mgr->ndisks = ndisks;
     mgr->disks = (char**)malloc(sizeof(char*) * ndisks);
@@ -44,7 +45,7 @@ Mgr* mgr_create(const char **disks, int ndisks)
         }
         mgr->disks[i] = strdup(disks[i]);
 
-        // auto symlink
+        // auto symlink(Symbolic link)
         //if (1) {
             DIR* dp = opendir(disks[i]);
             if (dp == NULL) {
@@ -56,13 +57,15 @@ Mgr* mgr_create(const char **disks, int ndisks)
             struct stat sb;
             while ((de = readdir(dp)) != NULL) {
                 int len = strlen(de->d_name);
-                if (de->d_name[0] == '.') continue;
-                if (len != 8 && len != 9 && len != 12) continue; // .data .htree .hint.qlz
+                if (de->d_name[0] == '.') continue; /*ignore hidden file*/
+                /*file name format : XXX[.data|.htree|.hint|.qlz]*/
+                if (len != 8 && len != 9 && len != 12) continue; 
                 sprintf(target, "%s/%s", disks[i], de->d_name);
                 if (stat(target, &sb) != 0) {
                     unlink(target);
                 }
                 if (i == 0) continue;
+                /*S_IFREG means a normal file*/
                 if (lstat(target, &sb) != 0 || (sb.st_mode & S_IFMT) != S_IFREG) {
                     unlink(target);
                     continue;

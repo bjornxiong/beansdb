@@ -33,7 +33,12 @@ void write_file(char *buf, int size, const char* path);
 
 typedef struct hint_record {
     uint32_t ksize:8;
+    /*表示在文件中的位置 文件大小限制为2G(1<<24)*/
     uint32_t pos:24;
+    /*
+      version > 0 , add record to hashtree ;
+      version < 0 , delete record from hashtree
+    */
     int32_t version;
     uint16_t hash;
     char key[NAME_IN_RECORD]; // allign

@@ -27,7 +27,7 @@ typedef struct data_record {
         uint32_t crc;
     };
     int32_t tstamp;
-    int32_t flag;
+    int32_t flag;/*record.c开头的那几个const int标志的组合*/
     int32_t version;
     uint32_t ksz;
     uint32_t vsz;

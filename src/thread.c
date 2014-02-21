@@ -179,7 +179,7 @@ static void *worker_main(void *arg) {
 
 AGAIN:
         while(loop.nready == 0 && daemon_quit == 0)
-            loop.nready = aeApiPoll(&loop, &tv);
+            loop.nready = aeApiPoll(&loop, &tv);/*thread wait in here*/
         if (daemon_quit) {
             pthread_mutex_unlock(&leader);
             break;

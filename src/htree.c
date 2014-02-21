@@ -20,7 +20,6 @@
 #include <pthread.h>
 #include <fcntl.h>
 
-#include "fnv1a.h"
 #include "htree.h"
 #include "codec.h"
 
@@ -28,41 +27,60 @@ const int MAX_KEY_LENGTH = 200;
 const int BUCKET_SIZE = 16;
 const int SPLIT_LIMIT = 64; 
 const int MAX_DEPTH = 8;
+/*
+  0 = 0
+  1 = 1
+  10001 = 1 + 16
+  100010001 = 1 + 16 + 256 = 273
+  ...
+*/
 static const long long g_index[] = {0, 1, 17, 273, 4369, 69905, 1118481, 17895697, 286331153, 4581298449L};
 
 const char VERSION[] = "HTREE001";
 
 #define max(a,b) ((a)>(b)?(a):(b))
+/*it是第几个孩子节点,0x0f说明最多有16个孩子节点*/
 #define INDEX(it) (0x0f & (keyhash >> ((7 - node->depth - tree->depth) * 4)))
+/*item的整个大小 - sizeof(item) = 剩下的key长度 - ITEM_PADDING */
 #define KEYLENGTH(it) ((it)->length-sizeof(Item)+ITEM_PADDING)
+/*如果it不是一个有效的节点，该宏返回0 */
 #define HASH(it) ((it)->hash * ((it)->ver>0))
 
 typedef struct t_data Data;
 struct t_data {
-    int size;
-    int used;
+    int size; /* the size of the whole data*/
+    int used; /* used < size ; current size of data which is uesd*/
     int count;
     Item head[0];
 };
 
 typedef struct t_node Node;
 struct t_node {
-    uint16_t is_node:1;
-    uint16_t valid:1;
+    uint16_t is_node:1;/* = 1:说明这个node里没有存放数据，否则就是存放了数据的*/
+    uint16_t valid:1;/* = 1:说明这个节点是有效的，即它与它的所有子节点都没有被改动过*/
     uint16_t depth:4;
     uint16_t flag:9;
-    uint16_t hash;
-    uint32_t count;
+    uint16_t hash;/*哈希值，如果这个节点是非数据节点，这个值是所有子节点的哈希值之和  
+                    如果是数据节点，这个值是所有ver大于0的item的哈希值的和 */
+    uint32_t count;/*所有子节点里ver>0的item的个数*/
     Data *data;
 };
 
+/*data的count表示有多少个item,node的count表示有多少个item的ver是>0的。  
+  htree是一块连续的内存，相当于使用数组存放一个二叉树。*/
 struct t_hash_tree {
-    int depth;
-    int pos;
+    int depth; /*depth + 1 = height*/
+    int pos;   /*the index of bitcask of hashtree in store*/
     int height;
     Node *root;
     Codec *dc;
     pthread_mutex_t lock;
+    /*
+      using in someplace which need buf for a short time.
+     eg:
+     create_item:   
+         Item *it = (Item*)tree->buf;
+    */
     char buf[512];
 };
 
@@ -74,14 +92,19 @@ static void split_node(HTree *tree, Node *node);
 static void merge_node(HTree *tree, Node *node);
 static void update_node(HTree *tree, Node *node);
 
+/*node在这一层的位置*/
 static inline uint32_t get_pos(HTree *tree, Node *node)
 {
-    return (node - tree->root) - g_index[(int)node->depth];
+    return (node - tree->root) /*node在整个pool中的位置*/
+        - g_index[(int)node->depth];/*node的上面层总共有的节点数*/
 }
 
+/*找到node的第b个孩子节点，b从0开始 */
 static inline Node *get_child(HTree *tree, Node *node, int b)
 {
-    int i = g_index[node->depth + 1] + (get_pos(tree, node) << 4) + b;
+    int i = g_index[node->depth + 1] /*node的孩子节点这一层之前总共有多少个节点  */
+        + (get_pos(tree, node) << 4) /*node的第1个孩子节点的位置*/
+        + b;
     return tree->root + i;
 }
 
@@ -118,7 +141,7 @@ static Item* create_item(HTree *tree, const char* key, int len, uint32_t pos, ui
 
 static void enlarge_pool(HTree *tree)
 {
-    int i;
+    int i;;
     int old_size = g_index[tree->height];
     int new_size = g_index[tree->height + 1];
     
@@ -145,6 +168,18 @@ static void clear(HTree *tree, Node *node)
     node->hash = 0;
 }
 
+  
+//将it插入到树中node节点开始的位置  
+//1.找到这个node下面的数据节点  
+//2.数据节点中存放的是Item组成的数组，根据Item的length域遍历这个数据节点的信息  
+//3.接下来就相当于数组的插入了，更新数据节点的count域和hash域  
+//  3.1.如果找到了相同的key，那么更新这个Item  
+//  3.2.否则将it放入到数组的末尾，更新Data的used域  
+//4.如果是插入，则有可能造成count的扩大，需要对数据节点进行分裂。  
+//  4.1.数据节点在树的最底层，那么允许一个数据节点存储的Item的个数为LIMIT*4，  
+//          这是为了防止enlarge_pool造成过多内存的使用  
+//  4.2.数据节点在树的中间部分，也就是说数据节点下面还有节点  
+//          那么为了使查找更有效率，需要尽量减少数据节点中Item的个数，超过LIMIT就要分裂
 static void add_item(HTree *tree, Node *node, Item *it, uint32_t keyhash, bool enlarge)
 {
     while (node->is_node) {
@@ -157,7 +192,7 @@ static void add_item(HTree *tree, Node *node, Item *it, uint32_t keyhash, bool e
     int i;
     for (i=0; i<data->count; i++){
         if (it->length == p->length && 
-                memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
+            memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
             node->hash += (HASH(it) - HASH(p)) * keyhash;
             node->count += it->ver > 0;
             node->count -= p->ver > 0;
@@ -167,6 +202,7 @@ static void add_item(HTree *tree, Node *node, Item *it, uint32_t keyhash, bool e
         p = (Item*)((char*)p + p->length);
     }
 
+    /*如果data的size不够用了，就要malloc，新建一个data空间,至少要比64大*/
     if (data->size < data->used + it->length){
         int size = max(data->used + it->length, data->size + 64);
         int pos = (char*)p-(char*)data;
@@ -233,7 +269,7 @@ static void remove_item(HTree *tree, Node *node, Item *it, uint32_t keyhash)
     int i;
     for (i=0; i<data->count; i++){
         if (it->length == p->length && 
-                memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
+            memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
             data->count --;
             data->used -= p->length;
             node->count -= p->ver > 0;
@@ -295,6 +331,7 @@ static void update_node(HTree *tree, Node *node)
     }
 }
 
+/*通过哈希得到item*/
 static Item* get_item_hash(HTree* tree, Node* node, Item* it, uint32_t keyhash)
 {
     while (node->is_node) {
@@ -306,7 +343,7 @@ static Item* get_item_hash(HTree* tree, Node* node, Item* it, uint32_t keyhash)
     int i;
     for (i=0; i<data->count; i++){
         if (it->length == p->length && 
-                memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
+            memcmp(it->key, p->key, KEYLENGTH(it)) == 0){
             r = p;
             break;
         }
@@ -324,8 +361,14 @@ static inline int hex2int(char b)
     }
 }
 
+/*
+dir所表示的节点的哈希值之和  
+dir[i]表示的是从node开始的第i层的节点的子节点的位置  
+dir的len最多只有tree->hight  
+将node的ver>0的item个数存储在count中  
+*/
 static uint16_t get_node_hash(HTree* tree, Node* node, const char* dir, 
-    int *count)
+                              int *count)
 {
     if (node->is_node && strlen(dir) > 0){
         char i = hex2int(dir[0]);
@@ -341,6 +384,7 @@ static uint16_t get_node_hash(HTree* tree, Node* node, const char* dir,
     return node->hash;
 }
 
+/*找到前缀是prefix的item  */
 static char* list_dir(HTree *tree, Node* node, const char* dir, const char* prefix)
 {
     int dlen = strlen(dir); 
@@ -367,7 +411,7 @@ static char* list_dir(HTree *tree, Node* node, const char* dir, const char* pref
             for (i=0; i<BUCKET_SIZE; i++) {
                 Node *t = child + i;
                 n += snprintf(buf + n, bsize - n, "%x/ %u %u\n", 
-                            i, t->hash, t->count);
+                              i, t->hash, t->count);
             }
         }else{
             for (i=0; i<BUCKET_SIZE; i++) {
@@ -578,7 +622,7 @@ HTree* ht_open(int depth, int pos, const char *path)
 
     return tree;
 
-FAIL:
+ FAIL:
     if (tree->dc) dc_destroy(tree->dc);
     if (buf) free(buf);
     if (root) {
@@ -751,6 +795,7 @@ void ht_remove(HTree* tree, const char *key)
     pthread_mutex_unlock(&tree->lock);
 }
 
+/*return a new item*/
 Item* ht_get2(HTree* tree, const char* key, int len)
 {
     if (!check_key(tree, key, len)) return NULL;
@@ -807,3 +852,14 @@ void ht_visit(HTree *tree, fun_visitor visitor, void *param)
     visit_node(tree, tree->root, visitor, param);
     pthread_mutex_unlock(&tree->lock);  
 }
+
+
+
+
+
+
+
+
+
+
+

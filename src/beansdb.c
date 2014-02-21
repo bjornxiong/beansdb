@@ -2024,7 +2024,7 @@ int main (int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
 
-    /* open db */
+    /* open db and load old data from [.data|.hint.qlz|.htree]*/
     store = hs_open(dbhome, height, before_time, settings.num_threads);
     if (!store){
         fprintf(stderr, "failed to open db %s\n", dbhome);

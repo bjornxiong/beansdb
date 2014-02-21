@@ -79,6 +79,7 @@ static void* scan_thread(void *_args)
     int i, index = args->index;
     for (i=0; i<store->count; i++) {
         if (i % store->scan_threads == index) {
+            /* bc_scan(store->bitcasks[i]) . The bitcasks is just inited*/
             args->func(store->bitcasks[i]);
         }
     }
@@ -101,12 +102,17 @@ static void parallelize(HStore *store, BC_FUNC func) {
     pthread_attr_init(&attr);
 
     int i, ret;
+    /*
+      store->scan_threads default is 16
+      per scan_thread(thread_ids) with one arg(args)
+    */
     pthread_t *thread_ids = malloc(sizeof(pthread_t) * store->scan_threads);
     struct scan_args *args = (struct scan_args *) malloc(sizeof(struct scan_args) * store->scan_threads);
     for (i=0; i<store->scan_threads; i++) {
         args[i].store = store;
         args[i].index = i;
         args[i].func = func;
+        /*scan_thread will scan some . if scan finished , scan_completed++ */
         if ((ret = pthread_create(thread_ids + i, &attr, scan_thread, args + i)) != 0) {
             fprintf(stderr, "Can't create thread: %s\n", strerror(ret));
             exit(1);
@@ -127,6 +133,7 @@ static void parallelize(HStore *store, BC_FUNC func) {
     free(args);
 }
 
+/*default : testdb , 1 ， 0 ， 16 */
 HStore* hs_open(char *path, int height, time_t before, int scan_threads)
 {
     if (NULL == path) return NULL;
@@ -145,6 +152,7 @@ HStore* hs_open(char *path, int height, time_t before, int scan_threads)
     
     char *paths[20], *rpath = path;
     int npath = 0;
+    /* create multiple files. npath is counter */
     while ((paths[npath] = strsep(&rpath, ",:;")) != NULL) {
         if (npath >= MAX_PATHS) return NULL; 
         path = paths[npath];
@@ -164,17 +172,20 @@ HStore* hs_open(char *path, int height, time_t before, int scan_threads)
         npath ++;
     }
 
+    /*count = 16*/
     int i, j, count = 1 << (height * 4);
     HStore *store = (HStore*) malloc(sizeof(HStore) + sizeof(Bitcask*) * count);
     if (!store) return NULL;
     memset(store, 0, sizeof(HStore) + sizeof(Bitcask*) * count);
-    store->height = height;
-    store->count = count;
-    store->before = before;
-    store->scan_threads = scan_threads;
+    store->height = height;            /*default :  1*/
+    store->count = count;              /*default : 16*/
+    store->before = before;            /*default :  0*/
+    store->scan_threads = scan_threads;/*default : 16*/
     store->op_start = 0;
     store->op_end = 0;
     store->op_limit = 0;
+    /*paths[20] , npath is the legnth of paths */
+    /*default : testdb , 1 */
     store->mgr = mgr_create((const char**)paths, npath);
     if (store->mgr == NULL) {
         free(store);
@@ -188,6 +199,11 @@ HStore* hs_open(char *path, int height, time_t before, int scan_threads)
     for (i=0;i<npath;i++) {
         buf[i] = malloc(255);
     }
+    /*
+      count default is 16 , npath is 1 , height is 1
+      The following code-snippet is to new some child files.
+      eg: 1 2 3 4 ... a b c d e f
+    */
     for (i=0; i<count; i++){
         for (j=0; j<npath; j++) {
             path = paths[j];
@@ -200,6 +216,7 @@ HStore* hs_open(char *path, int height, time_t before, int scan_threads)
         }
         Mgr *mgr = mgr_create((const char**)buf, npath);
         if (mgr == NULL) return NULL;
+        /*bc_open2 : new a bitcask and init some params (per bitcask with one hashtree)*/
         store->bitcasks[i] = bc_open2(mgr, height, i, before);
     }
     for (i=0;i<npath;i++) {

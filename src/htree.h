@@ -1,23 +1,12 @@
-/*
- *  Beansdb - A high available distributed key-value storage system:
- *
- *      http://beansdb.googlecode.com
- *
- *  Copyright 2009 Douban Inc.  All rights reserved.
- *
- *  Use and distribution licensed under the BSD license.  See
- *  the LICENSE file for full text.
- *
- *  Authors:
- *      Davies Liu <davies.liu@gmail.com>
- */
 #ifndef __HTREE_H__
 #define __HTREE_H__
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
-#include <errno.h>
+#include <ctype.h>
 
 inline static void* 
 my_malloc(size_t s, const char *file, int line, const char *func) {
@@ -34,11 +23,26 @@ my_malloc(size_t s, const char *file, int line, const char *func) {
 
 typedef struct t_item Item;
 struct t_item {
+    /*
+      int bucket = item->pos & 0xff; 表示是第几个文件  
+      uint32_t pos = item->pos & 0xffffff00; 表示在文件中的位置
+    */
     uint32_t pos;
+    /*
+     >0,该数据才有效，<0，数据无效
+     ver不会等于0，因此如果set的参数为0时，表示是更新  
+     ver不会等于-1，因此set的参数为-1时，表示是删除。  
+     ver的更新方法见bitcast.c中的bc_set函数 
+     */
     int32_t  ver;
     uint16_t hash;
+    /*
+      sizeof(Item) + n - ITEM_PADDING
+      这个item的长度。通过这个长度找到下一个item 
+    */
     uint8_t  length;
-    char     key[1];
+    /* key is a char-array , key is encoded by codec.c:dc_encode*/
+    char     key[1]; 
 };
 
 #define ITEM_PADDING 1

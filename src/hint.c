@@ -33,6 +33,7 @@ static int curr_mmap_size = 0;
 static pthread_mutex_t mmap_lock = PTHREAD_MUTEX_INITIALIZER;
 
 
+
 // for build hint
 struct param {
     int size;
@@ -122,7 +123,7 @@ MFile* open_mfile(const char* path)
 #endif
 
     pthread_mutex_lock(&mmap_lock);
-    int mb = sb.st_size >> 20;
+    int mb = sb.st_size >> 20;/*conver B to MB*/
     while (curr_mmap_size + mb > MAX_MMAP_SIZE && mb > 100) {
         pthread_mutex_unlock(&mmap_lock);
         sleep(5);
@@ -173,6 +174,7 @@ void close_mfile(MFile *f)
     free(f);
 }
 
+/*open a hint file , and decompress content into hint->buf.*/
 HintFile *open_hint(const char* path, const char* new_path) 
 {
     MFile *f = open_mfile(path);
@@ -182,8 +184,8 @@ HintFile *open_hint(const char* path, const char* new_path)
     
     HintFile *hint = (HintFile*) malloc(sizeof(HintFile));
     hint->f = f;
-    hint->buf = f->addr;
-    hint->size = f->size;
+    hint->buf = f->addr; /* return by mmap*/
+    hint->size = f->size;/* sb.st_size*/
 
     if (strcmp(path + strlen(path) - 4, ".qlz") == 0 && hint->size > 0) {
         char wbuf[QLZ_SCRATCH_DECOMPRESS];
@@ -228,6 +230,7 @@ void scanHintFile(HTree* tree, int bucket, const char* path, const char* new_pat
             fprintf(stderr, "scan %s: unexpected end, need %ld byte\n", path, p - end);
             break;
         }
+        /*低8位表示bucket 高24位表示在文件中的位置*/
         uint32_t pos = (r->pos << 8) | (bucket & 0xff);
         if (r->version > 0)
             ht_add2(tree, r->key, r->ksize, pos, r->hash, r->version);

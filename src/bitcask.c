@@ -48,17 +48,38 @@ struct bitcask_t {
     uint32_t depth, pos;
     time_t before;
     Mgr    *mgr;
+    /*tree记录了所有的data数据信息(也就是curr个tree的信息)，比cur_tree要大得多 */
+    /*只有一个curr_tree，就是当前active的datafile的bucket的数据 */
     HTree  *tree, *curr_tree;
-    int    last_snapshot;
-    int    curr;
+    int    last_snapshot;/*last index of snapshot of htree*/
+    int    curr;/*当前的桶的序号，这之前的桶都已经写入datafile了*/
+    /*bytes = all DATA_FILE size*/
     uint64_t bytes, curr_bytes;
-    char   *write_buffer;
+    char   *write_buffer;/*write_buffer相当于active file的一个缓冲区。当write_buffer满了以后就flush */
     time_t last_flush_time;
+    /*
+     write_buffer的大小小于文件的大小，所以start_pos是记录的write_buffer在文件中的位移，也就是文件的末尾  
+     */
     uint32_t    wbuf_size, wbuf_start_pos, wbuf_curr_pos;
+    /*
+      结合item的pos，可以得到操作： 
+      如果有item的pos，那么pos = item->pos & 0xffffff00是这个record相对于文件的位移 
+      而start_pos是write_buffer相对于文件的位移， 
+      bc->write_buffer + pos - bc->wbuf_start_pos就得到了这个record在write_buffer 
+      (如果有的话，即这是最后一个bucket)的位置 
+     */
     pthread_mutex_t flush_lock, buffer_lock, write_lock;
     int    optimize_flag;
 };
 
+/*
+  一个bc里最多有MAX_BUCKET_COUNT个文件，每个文件叫做这个bc的bucket  
+  打开一个bitcask  
+  1.申请内存并初始化。  
+  2.遍历目录下的所有files——根据hintfile——如果没有就是用datafile——来建立一个整体的bc->tree  
+  3.更新bc的curr域，表示当前有多少个data文件  
+  before - 遍历的时间限制，只遍历before以后的hintfile，或者datafile中tsstamp在before之后的record
+*/
 Bitcask* bc_open(const char* path, int depth, int pos, time_t before)
 {
     if (path == NULL || depth > 4) return NULL;
@@ -89,6 +110,7 @@ Bitcask* bc_open2(Mgr *mgr, int depth, int pos, time_t before)
     bc->curr_bytes = 0;
     bc->tree = NULL;
     bc->last_snapshot = -1;
+    /*new a hash tree*/
     bc->curr_tree = ht_new(depth, pos);
     bc->wbuf_size = 1024 * 4;
     bc->write_buffer = malloc(bc->wbuf_size);
@@ -132,6 +154,7 @@ static void skip_empty_file(Bitcask* bc)
     
     const char* base = mgr_base(bc->mgr);
     for (i=0; i<MAX_BUCKET_COUNT; i++) {
+        /*check file-name like this : (%s/%03d.data , i)*/
         if (file_exists(gen_path(opath, base, DATA_FILE, i))) {
             if (i != last) {
                 mgr_rename(opath, gen_path(npath, base, DATA_FILE, last));
@@ -147,6 +170,7 @@ static void skip_empty_file(Bitcask* bc)
     }
 }
 
+/*load data into bitcask to build hashtree*/
 void bc_scan(Bitcask* bc)
 {
     char datapath[255], hintpath[255];
@@ -155,7 +179,7 @@ void bc_scan(Bitcask* bc)
     
     skip_empty_file(bc);
 
-    const char* base = mgr_base(bc->mgr);
+    const char* base = mgr_base(bc->mgr);/*default is return "testdb"*/
     // load snapshot of htree
     for (i=MAX_BUCKET_COUNT-1; i>=0; i--) {
         if (stat(gen_path(datapath, base, HTREE_FILE, i), &st) == 0 
@@ -181,13 +205,17 @@ void bc_scan(Bitcask* bc)
             break;
         }
         bc->bytes += st.st_size;
+        /*bc->last_snapshot 之前的数据，都已经被HTREE_FILE保存了*/
         if (i <= bc->last_snapshot) continue;
 
         gen_path(hintpath, base, HINT_FILE, i);
         if (bc->before == 0){
+            /* 如果有对应的hintfile，则更新这个hintfile对应的树节 */
             if (0 == stat(hintpath, &st)){
+                /*add hintpath's data to bc->tree */
                 scanHintFile(bc->tree, i, hintpath, NULL);
             }else{
+            /* 否则，更新datapath的数据,并创建对应的hintfile  */
                 scanDataFile(bc->tree, i, datapath,
                         new_path(hintpath, bc->mgr, HINT_FILE, i));
             }
@@ -200,7 +228,7 @@ void bc_scan(Bitcask* bc)
             }
         }
     }
-
+    /* 当数据很多的时候。直接创建HTREE文件，加快数据恢复的速度 */
     if (i - bc->last_snapshot > SAVE_HTREE_LIMIT) {
         if (ht_save(bc->tree, new_path(datapath, bc->mgr, HTREE_FILE, i-1)) == 0) {
             mgr_unlink(gen_path(NULL, base, HTREE_FILE, bc->last_snapshot));
@@ -286,6 +314,18 @@ static void update_item_pos(Item *it, void *_args)
     }
 }
 
+/*
+   在经过一段时间的运行后，新的bc->tree会新增或者删除一些节点，原来的datafile中的记录有可能就  
+   就应该被删除了。为了节省文件空间，需要将那些空的比较多的datafile中的有效的DataRecord保留下来，
+   而将该删的DataRecord删掉。  
+ 1.依次遍历这个bc的每个bucket，也就是每个datafile
+ 2.调用record.c中的optimizeDataFile，这个函数会比较hintfile中的tree跟bc->tree的不同  
+   并记录下来删除的record的数目，以决定是否值得optimize  
+ 3.如果需要optimize，那么从datafile中读取DataRecord，并在bc->tree中查找看是否有必要保留  
+ 4.经过optimize，datafile中DataRecord的位置可能发生了变化，这些变化被存储在相应的hashtree中  
+   也就是本函数的cur_tree中，我们需要遍历cur_tree，反过来更新bc->tree  
+ 5.然后根据cur_tree生成对应的hintfile
+*/
 void bc_optimize(Bitcask *bc, int limit)
 {
     int i, total, last = -1;
