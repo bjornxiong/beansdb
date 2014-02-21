@@ -8,7 +8,7 @@ Stupid (KISS).
 
 原项目的git地址：https://github.com/douban/beansdb
 
-# The significance of this project?
+# The meaning of this project?
 
 * 本项目只是在源码的基础上添加一定的注释，目的是方便自己和有需要的朋友阅读。
 
