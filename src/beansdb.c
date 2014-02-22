@@ -1593,9 +1593,9 @@ static int server_socket(const int port, const bool is_udp) {
      */
     memset(&hints, 0, sizeof (hints));
     hints.ai_flags = AI_PASSIVE|AI_ADDRCONFIG;
-    hints.ai_family = AF_UNSPEC;
+    hints.ai_family = AF_UNSPEC;/*AF_INET(IPv4) , AF_INET6(IPv6) , AF_UNSPEC(协议无关)*/
     hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_socktype = SOCK_STREAM;/*TCP*/
 
     snprintf(port_buf, NI_MAXSERV, "%d", port);
     error= getaddrinfo(settings.inter, port_buf, &hints, &ai);
@@ -1639,6 +1639,7 @@ static int server_socket(const int port, const bool is_udp) {
           }
       }
 
+      /* init loop.conns[] */
       if (!(listen_conn_add = conn_new(sfd, conn_listening, 1))) {
           fprintf(stderr, "failed to create listening connection\n");
           exit(EXIT_FAILURE);
