@@ -32,7 +32,7 @@
 
 typedef struct EventLoop {
     conn* conns[AE_SETSIZE];
-    int   fired[AE_SETSIZE];
+    int   fired[AE_SETSIZE];/*value is seted in ae_xxx.c:aeApiPoll*/
     int   nready;
     void *apidata;
 } EventLoop;
@@ -179,7 +179,7 @@ static void *worker_main(void *arg) {
 
 AGAIN:
         while(loop.nready == 0 && daemon_quit == 0)
-            loop.nready = aeApiPoll(&loop, &tv);/*thread wait in here*/
+            loop.nready = aeApiPoll(&loop, &tv);/*thread block in here*/
         if (daemon_quit) {
             pthread_mutex_unlock(&leader);
             break;

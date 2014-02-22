@@ -1368,6 +1368,7 @@ int drive_machine(conn *c) {
                     if (settings.verbose > 0)
                         fprintf(stderr, "Too many open connections\n");
                     if (stub_fd > 0){
+                        /*close stub_fd to get more resource*/
                         close(stub_fd);
                         if ((sfd = accept(c->sfd, (struct sockaddr *)&addr, &addrlen)) != -1) {
                             close(sfd);
@@ -1383,6 +1384,10 @@ int drive_machine(conn *c) {
                 }
                 if (stop) break;
             }
+            /*
+              F_GETFL:得到open设置的标志
+              F_SETFL:改变open设置的标志
+            */
             if ((flags = fcntl(sfd, F_GETFL, 0)) < 0 ||
                 fcntl(sfd, F_SETFL, flags | O_NONBLOCK) < 0) {
                 perror("setting O_NONBLOCK");
@@ -1569,6 +1574,7 @@ static int new_socket(struct addrinfo *ai) {
     return sfd;
 }
 
+/*port = 7900 , is_idp = false*/
 static int server_socket(const int port, const bool is_udp) {
     int sfd;
     struct linger ling = {0, 0};
@@ -2037,7 +2043,7 @@ int main (int argc, char **argv) {
     }
     thread_init(settings.num_threads);
     
-    /* create the listening socket, bind it, and init */
+    /* create the listening socket, bind it, and init loop.conns*/
     if (server_socket(settings.port, false)) {
         fprintf(stderr, "failed to listen\n");
         exit(EXIT_FAILURE);
