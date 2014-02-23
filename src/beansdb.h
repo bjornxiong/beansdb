@@ -168,14 +168,14 @@ enum conn_states {
 
 typedef struct conn conn;
 struct conn {
-    int    sfd;
-    int    state;
-    short  ev_flags;
+    int    sfd;     /*socket fileid*/
+    int    state;   /*emun conn_states*/
+    short  ev_flags;/*AE_NONE , AE_READABLE , AE_WRITABLE*/
 
     char   *rbuf;   /** buffer to read commands into */
     char   *rcurr;  /** but if we parsed some already, this is where we stopped */
     int    rsize;   /** total allocated size of rbuf */
-    int    rbytes;  /** how much data, starting from rcur, do we have unparsed */
+    int    rbytes;  /** how much data, starting from rcurr, do we have unparsed */
 
     char   *wbuf;
     char   *wcurr;

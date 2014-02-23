@@ -231,6 +231,10 @@ bool do_conn_add_to_freelist(conn *c) {
     return true;
 }
 
+/*
+  server_socket  : sfd , conn_listening , 1 ;
+  drive_machine/conn_listening : sfd , conn_read , DATA_BUFFER_SIZE ;
+*/
 conn *conn_new(const int sfd, const int init_state, const int read_buffer_size) {
     conn *c = conn_from_freelist();
 
@@ -1191,6 +1195,7 @@ static int try_read_command(conn *c) {
     assert(c != NULL);
     assert(c->rcurr <= (c->rbuf + c->rsize));
 
+    /*first time : c->rbytes = c->wbytes = 0;*/
     if (c->rbytes == 0)
         return 0;
     el = memchr(c->rcurr, '\n', c->rbytes);
@@ -1227,6 +1232,7 @@ static int try_read_network(conn *c) {
 
     assert(c != NULL);
 
+    /*first time : c->rcurr == c->rbuf */
     if (c->rcurr != c->rbuf) {
         if (c->rbytes != 0) /* otherwise there's nothing to copy */
             memmove(c->rbuf, c->rcurr, c->rbytes);
@@ -1234,6 +1240,7 @@ static int try_read_network(conn *c) {
     }
 
     while (1) {
+        /*first time : c->rbytes = 0 , c->rsize = DATA_BUFFER_SIZE(2048)*/
         if (c->rbytes >= c->rsize) {
             char *new_rbuf = realloc(c->rbuf, c->rsize * 2);
             if (!new_rbuf) {
@@ -1247,7 +1254,6 @@ static int try_read_network(conn *c) {
             c->rcurr = c->rbuf = new_rbuf;
             c->rsize *= 2;
         }
-
 
         int avail = c->rsize - c->rbytes;
         res = read(c->sfd, c->rbuf + c->rbytes, avail);
@@ -1356,7 +1362,7 @@ int drive_machine(conn *c) {
     assert(c != NULL);
 
     while (!stop) {
-
+        /*c->state default is conn_listening*/
         switch(c->state) {
         case conn_listening:
             addrlen = sizeof(addr);
@@ -1403,6 +1409,7 @@ int drive_machine(conn *c) {
             break;
 
         case conn_read:
+            /*first time is return 0.*/
             if (try_read_command(c) != 0) {
                 continue;
             }

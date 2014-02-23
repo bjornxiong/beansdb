@@ -1,0 +1,607 @@
+./emacs.desktop:(setq file-name-history '("/data/code/c-cpp/git/github/beansdb/src/ae_select.c" "/data/code/c-cpp/git/github/beansdb/src/ae_kqueue.c" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/usr/include/sys/socket.h" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/signal.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/usr/include/netdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/bits/socket.h" "/usr/include/netdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/usr/include/signal.h" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/usr/include/signal.h" "/usr/include/netdb.h" "/usr/include/bits/socket.h" "/data/code/c-cpp/git/github/beansdb/src/" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/item.c" "/usr/include/sys/epoll.h" "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c" "/data/code/c-cpp/git/github/beansdb/src/" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.h" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c" "/data/code/c-cpp/git/github/beansdb/src/thread.c" "/data/code/c-cpp/git/github/beansdb/src/beansdb.c" "/data/code/c-cpp/git/github/beansdb/src/hstore.h" "/data/code/c-cpp/git/github/beansdb/src/bitcask.c"))
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/beansdb.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/thread.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/ae_epoll.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/beansdb.h"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/ae_select.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/ae_kqueue.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  'c-mode
+./emacs.desktop:  'c-mode
+./emacs.desktop:  'c-mode
+./emacs.desktop:  'c-mode
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/item.c"
+./emacs.desktop:  'c-mode
+./emacs.desktop:  "/data/code/c-cpp/git/github/beansdb/src/bitcask.c"
+./emacs.desktop:  'c-mode
+./doc/Makefile.in:install-exec: install-exec-am
+./doc/Makefile.in:	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+./doc/Makefile.in:install-exec-am:
+./doc/Makefile.in:	install-dvi-am install-exec install-exec-am install-html \
+./configure:  -exec-prefix | --exec_prefix | --exec-prefix | --exec-prefi \
+./configure:  | --exec-pref | --exec-pre | --exec-pr | --exec-p | --exec- \
+./configure:  -exec-prefix=* | --exec_prefix=* | --exec-prefix=* | --exec-prefi=* \
+./configure:  | --exec-pref=* | --exec-pre=* | --exec-pr=* | --exec-p=* | --exec-=* \
+./configure:  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
+./configure:                http://gcc.gnu.org/ml/gcc-patches/2003-12/msg02303.html
+./src/beansdb.c:    if (c->msgsize == c->msgused) {
+./src/beansdb.c:        msg = realloc(c->msglist, c->msgsize * 2 * sizeof(struct msghdr));
+./src/beansdb.c:        c->msglist = msg;
+./src/beansdb.c:        c->msgsize *= 2;
+./src/beansdb.c:    msg = c->msglist + c->msgused;
+./src/beansdb.c:    msg->msg_iov = &c->iov[c->iovused];
+./src/beansdb.c:    c->msgbytes = 0;
+./src/beansdb.c:    c->msgused++;
+./src/beansdb.c:        c->rbuf = c->wbuf = 0;
+./src/beansdb.c:        c->ilist = 0;
+./src/beansdb.c:        c->iov = 0;
+./src/beansdb.c:        c->msglist = 0;
+./src/beansdb.c:        c->rsize = read_buffer_size;
+./src/beansdb.c:        c->wsize = DATA_BUFFER_SIZE;
+./src/beansdb.c:        c->isize = ITEM_LIST_INITIAL;
+./src/beansdb.c:        c->iovsize = IOV_LIST_INITIAL;
+./src/beansdb.c:        c->msgsize = MSG_LIST_INITIAL;
+./src/beansdb.c:        c->rbuf = (char *)malloc((size_t)c->rsize);
+./src/beansdb.c:        c->wbuf = (char *)malloc((size_t)c->wsize);
+./src/beansdb.c:        c->ilist = (item **)malloc(sizeof(item *) * c->isize);
+./src/beansdb.c:        c->iov = (struct iovec *)malloc(sizeof(struct iovec) * c->iovsize);
+./src/beansdb.c:        c->msglist = (struct msghdr *)malloc(sizeof(struct msghdr) * c->msgsize);
+./src/beansdb.c:        if (c->rbuf == 0 || c->wbuf == 0 || c->ilist == 0 || c->iov == 0 ||
+./src/beansdb.c:                c->msglist == 0) {
+./src/beansdb.c:    c->sfd = sfd;
+./src/beansdb.c:    c->state = init_state;
+./src/beansdb.c:    c->rlbytes = 0;
+./src/beansdb.c:    c->rbytes = c->wbytes = 0;
+./src/beansdb.c:    c->wcurr = c->wbuf;
+./src/beansdb.c:    c->rcurr = c->rbuf;
+./src/beansdb.c:    c->ritem = 0;
+./src/beansdb.c:    c->icurr = c->ilist;
+./src/beansdb.c:    c->ileft = 0;
+./src/beansdb.c:    c->iovused = 0;
+./src/beansdb.c:    c->msgcurr = 0;
+./src/beansdb.c:    c->msgused = 0;
+./src/beansdb.c:    c->write_and_go = conn_read;
+./src/beansdb.c:    c->write_and_free = 0;
+./src/beansdb.c:    c->item = 0;
+./src/beansdb.c:    c->noreply = false;
+./src/beansdb.c:    if (c->item) {
+./src/beansdb.c:        item_free(c->item);
+./src/beansdb.c:        c->item = 0;
+./src/beansdb.c:    if (c->ileft != 0) {
+./src/beansdb.c:        for (; c->ileft > 0; c->ileft--,c->icurr++) {
+./src/beansdb.c:            item_free(*(c->icurr));
+./src/beansdb.c:    if (c->write_and_free) {
+./src/beansdb.c:        free(c->write_and_free);
+./src/beansdb.c:        c->write_and_free = 0;
+./src/beansdb.c:        if (c->msglist)
+./src/beansdb.c:            free(c->msglist);
+./src/beansdb.c:        if (c->rbuf)
+./src/beansdb.c:            free(c->rbuf);
+./src/beansdb.c:        if (c->wbuf)
+./src/beansdb.c:            free(c->wbuf);
+./src/beansdb.c:        if (c->ilist)
+./src/beansdb.c:            free(c->ilist);
+./src/beansdb.c:        if (c->iov)
+./src/beansdb.c:            free(c->iov);
+./src/beansdb.c:        fprintf(stderr, "<%d connection closed.\n", c->sfd);
+./src/beansdb.c:    delete_event(c->sfd);
+./src/beansdb.c:    close(c->sfd);
+./src/beansdb.c:    c->sfd = -1;
+./src/beansdb.c:    if (c->rsize > READ_BUFFER_HIGHWAT || conn_add_to_freelist(c)) {
+./src/beansdb.c:    if (c->rsize > READ_BUFFER_HIGHWAT && c->rbytes < DATA_BUFFER_SIZE) {
+./src/beansdb.c:        if (c->rcurr != c->rbuf)
+./src/beansdb.c:            memmove(c->rbuf, c->rcurr, (size_t)c->rbytes);
+./src/beansdb.c:        newbuf = (char *)realloc((void *)c->rbuf, DATA_BUFFER_SIZE);
+./src/beansdb.c:            c->rbuf = newbuf;
+./src/beansdb.c:            c->rsize = DATA_BUFFER_SIZE;
+./src/beansdb.c:        c->rcurr = c->rbuf;
+./src/beansdb.c:    if (c->isize > ITEM_LIST_HIGHWAT) {
+./src/beansdb.c:        item **newbuf = (item**) realloc((void *)c->ilist, ITEM_LIST_INITIAL * sizeof(c->ilist[0]));
+./src/beansdb.c:            c->ilist = newbuf;
+./src/beansdb.c:            c->isize = ITEM_LIST_INITIAL;
+./src/beansdb.c:    if (c->msgsize > MSG_LIST_HIGHWAT) {
+./src/beansdb.c:        struct msghdr *newbuf = (struct msghdr *) realloc((void *)c->msglist, MSG_LIST_INITIAL * sizeof(c->msglist[0]));
+./src/beansdb.c:            c->msglist = newbuf;
+./src/beansdb.c:            c->msgsize = MSG_LIST_INITIAL;
+./src/beansdb.c:    if (c->iovsize > IOV_LIST_HIGHWAT) {
+./src/beansdb.c:        struct iovec *newbuf = (struct iovec *) realloc((void *)c->iov, IOV_LIST_INITIAL * sizeof(c->iov[0]));
+./src/beansdb.c:            c->iov = newbuf;
+./src/beansdb.c:            c->iovsize = IOV_LIST_INITIAL;
+./src/beansdb.c:    if (state != c->state) {
+./src/beansdb.c:        c->state = state;
+./src/beansdb.c:    if (c->iovused >= c->iovsize) {
+./src/beansdb.c:        struct iovec *new_iov = (struct iovec *)realloc(c->iov,
+./src/beansdb.c:                                (c->iovsize * 2) * sizeof(struct iovec));
+./src/beansdb.c:        c->iov = new_iov;
+./src/beansdb.c:        c->iovsize *= 2;
+./src/beansdb.c:        for (i = 0, iovnum = 0; i < c->msgused; i++) {
+./src/beansdb.c:            c->msglist[i].msg_iov = &c->iov[iovnum];
+./src/beansdb.c:            iovnum += c->msglist[i].msg_iovlen;
+./src/beansdb.c:        m = &c->msglist[c->msgused - 1];
+./src/beansdb.c:        limit_to_mtu = (1 == c->msgused);
+./src/beansdb.c:            (limit_to_mtu && c->msgbytes >= MAX_PAYLOAD_SIZE)) {
+./src/beansdb.c:            m = &c->msglist[c->msgused - 1];
+./src/beansdb.c:        if (limit_to_mtu && len + c->msgbytes > MAX_PAYLOAD_SIZE) {
+./src/beansdb.c:            leftover = len + c->msgbytes - MAX_PAYLOAD_SIZE;
+./src/beansdb.c:        m = &c->msglist[c->msgused - 1];
+./src/beansdb.c:        c->msgbytes += len;
+./src/beansdb.c:        c->iovused++;
+./src/beansdb.c:    if (c->noreply) {
+./src/beansdb.c:            fprintf(stderr, ">%d %s\n", c->sfd, str);
+./src/beansdb.c:        c->noreply = false;
+./src/beansdb.c:    if ((len + 2) > c->wsize) {
+./src/beansdb.c:    memcpy(c->wbuf, str, len);
+./src/beansdb.c:    memcpy(c->wbuf + len, "\r\n", 2);
+./src/beansdb.c:    c->wbytes = len + 2;
+./src/beansdb.c:    c->wcurr = c->wbuf;
+./src/beansdb.c:    c->write_and_go = conn_read;
+./src/beansdb.c: * has been stored in c->item_comm, and the item is ready in c->item.
+./src/beansdb.c:    item *it = c->item;
+./src/beansdb.c:    int comm = c->item_comm;
+./src/beansdb.c:    item_free(c->item);
+./src/beansdb.c:    c->item = 0;
+./src/beansdb.c:        c->write_and_free = buf;
+./src/beansdb.c:        c->wcurr = buf;
+./src/beansdb.c:        c->wbytes = bytes;
+./src/beansdb.c:        c->write_and_go = conn_read;
+./src/beansdb.c:        c->noreply = true;
+./src/beansdb.c:    return c->noreply;
+./src/beansdb.c:                if (i >= c->isize) {
+./src/beansdb.c:                    item **new_list = realloc(c->ilist, sizeof(item *) * c->isize * 2);
+./src/beansdb.c:                        c->isize *= 2;
+./src/beansdb.c:                        c->ilist = new_list;
+./src/beansdb.c:                    fprintf(stderr, ">%d sending key %s\n", c->sfd, ITEM_key(it));
+./src/beansdb.c:                *(c->ilist + i) = it;
+./src/beansdb.c:    c->icurr = c->ilist;
+./src/beansdb.c:    c->ileft = i;
+./src/beansdb.c:        fprintf(stderr, ">%d END\n", c->sfd);
+./src/beansdb.c:        c->msgcurr = 0;
+./src/beansdb.c:        c->write_and_go = conn_swallow;
+./src/beansdb.c:        c->sbytes = vlen + 2;
+./src/beansdb.c:    c->item = it;
+./src/beansdb.c:    c->ritem = ITEM_data(it);
+./src/beansdb.c:    c->rlbytes = it->nbytes;
+./src/beansdb.c:    c->item_comm = comm;
+./src/beansdb.c:        fprintf(stderr, "<%d %s\n", c->sfd, command);
+./src/beansdb.c:    c->msgcurr = 0;
+./src/beansdb.c:    c->msgused = 0;
+./src/beansdb.c:    c->iovused = 0;
+./src/beansdb.c:        if (ntokens == (c->noreply ? 4 : 3)) {
+./src/beansdb.c:        getpeername(c->sfd, (struct sockaddr*)&addr, &addrlen);
+./src/beansdb.c:    assert(c->rcurr <= (c->rbuf + c->rsize));
+./src/beansdb.c:    if (c->rbytes == 0)
+./src/beansdb.c:    el = memchr(c->rcurr, '\n', c->rbytes);
+./src/beansdb.c:    if ((el - c->rcurr) > 1 && *(el - 1) == '\r') {
+./src/beansdb.c:    assert(cont <= (c->rcurr + c->rbytes));
+./src/beansdb.c:    process_command(c, c->rcurr);
+./src/beansdb.c:    c->rbytes -= (cont - c->rcurr);
+./src/beansdb.c:    c->rcurr = cont;
+./src/beansdb.c:    assert(c->rcurr <= (c->rbuf + c->rsize));
+./src/beansdb.c:    if (c->rcurr != c->rbuf) {
+./src/beansdb.c:        if (c->rbytes != 0) /* otherwise there's nothing to copy */
+./src/beansdb.c:            memmove(c->rbuf, c->rcurr, c->rbytes);
+./src/beansdb.c:        c->rcurr = c->rbuf;
+./src/beansdb.c:        if (c->rbytes >= c->rsize) {
+./src/beansdb.c:            char *new_rbuf = realloc(c->rbuf, c->rsize * 2);
+./src/beansdb.c:                c->rbytes = 0; /* ignore what we read */
+./src/beansdb.c:                c->write_and_go = conn_closing;
+./src/beansdb.c:            c->rcurr = c->rbuf = new_rbuf;
+./src/beansdb.c:            c->rsize *= 2;
+./src/beansdb.c:        int avail = c->rsize - c->rbytes;
+./src/beansdb.c:        res = read(c->sfd, c->rbuf + c->rbytes, avail);
+./src/beansdb.c:            c->rbytes += res;
+./src/beansdb.c:    c->ev_flags = new_flags;
+./src/beansdb.c: *   TRANSMIT_HARD_ERROR Can't write (c->state is set to conn_closing)
+./src/beansdb.c:    if (c->msgcurr < c->msgused &&
+./src/beansdb.c:            c->msglist[c->msgcurr].msg_iovlen == 0) {
+./src/beansdb.c:        c->msgcurr++;
+./src/beansdb.c:    if (c->msgcurr < c->msgused) {
+./src/beansdb.c:        struct msghdr *m = &c->msglist[c->msgcurr];
+./src/beansdb.c:        res = sendmsg(c->sfd, m, 0);
+./src/beansdb.c:        /*c->state default is conn_listening*/
+./src/beansdb.c:        switch(c->state) {
+./src/beansdb.c:            if ((sfd = accept(c->sfd, (struct sockaddr *)&addr, &addrlen)) == -1) {
+./src/beansdb.c:                        if ((sfd = accept(c->sfd, (struct sockaddr *)&addr, &addrlen)) != -1) {
+./src/beansdb.c:            if (c->rlbytes == 0) {
+./src/beansdb.c:            if (c->rbytes > 0) {
+./src/beansdb.c:                int tocopy = c->rbytes > c->rlbytes ? c->rlbytes : c->rbytes;
+./src/beansdb.c:                memcpy(c->ritem, c->rcurr, tocopy);
+./src/beansdb.c:                c->ritem += tocopy;
+./src/beansdb.c:                c->rlbytes -= tocopy;
+./src/beansdb.c:                c->rcurr += tocopy;
+./src/beansdb.c:                c->rbytes -= tocopy;
+./src/beansdb.c:            res = read(c->sfd, c->ritem, c->rlbytes);
+./src/beansdb.c:                c->ritem += res;
+./src/beansdb.c:                c->rlbytes -= res;
+./src/beansdb.c:            if (c->sbytes == 0) {
+./src/beansdb.c:            if (c->rbytes > 0) {
+./src/beansdb.c:                int tocopy = c->rbytes > c->sbytes ? c->sbytes : c->rbytes;
+./src/beansdb.c:                c->sbytes -= tocopy;
+./src/beansdb.c:                c->rcurr += tocopy;
+./src/beansdb.c:                c->rbytes -= tocopy;
+./src/beansdb.c:            res = read(c->sfd, c->rbuf, c->rsize > c->sbytes ? c->sbytes : c->rsize);
+./src/beansdb.c:                c->sbytes -= res;
+./src/beansdb.c:            if (c->iovused == 0) {
+./src/beansdb.c:                if (add_iov(c, c->wcurr, c->wbytes) != 0) {
+./src/beansdb.c:                if (c->state == conn_mwrite) {
+./src/beansdb.c:                    while (c->ileft > 0) {
+./src/beansdb.c:                        item *it = *(c->icurr);
+./src/beansdb.c:                        c->icurr++;
+./src/beansdb.c:                        c->ileft--;
+./src/beansdb.c:                } else if (c->state == conn_write) {
+./src/beansdb.c:                    if (c->write_and_free) {
+./src/beansdb.c:                        free(c->write_and_free);
+./src/beansdb.c:                        c->write_and_free = 0;
+./src/beansdb.c:                    conn_set_state(c, c->write_and_go);
+./src/beansdb.c:                        fprintf(stderr, "Unexpected state %d\n", c->state);
+./src/cscope.out:cscope 15 /data/code/c-cpp/git/github/beansdb/src               0000770576
+./src/cscope.out: =�c->
+./src/cscope.out:, c->
+./src/cscope.out: + c->
+./src/cscope.out:[c->
+./src/cscope.out: = c->
+./src/cscope.out:)c->
+./src/cscope.out:)c->
+./src/cscope.out:((�em *�* c->
+./src/cscope.out:((iovec�* c->
+./src/cscope.out:((msghdr�* c->
+./src/cscope.out: =�0 || c->
+./src/cscope.out: =�0 || c->
+./src/cscope.out: =�0 || c->
+./src/cscope.out: = c->
+./src/cscope.out: = c->
+./src/cscope.out: = c->
+./src/cscope.out: = c->
+./src/cscope.out: > 0; c->�e�--,c->
+./src/cscope.out: && c->
+./src/cscope.out: !�c->
+./src/cscope.out:, c->
+./src/cscope.out:)c->
+./src/cscope.out: = c->
+./src/cscope.out: * (c->ilist[0]));
+./src/cscope.out: * (c->msglist[0]));
+./src/cscope.out: * (c->iov[0]));
+./src/cscope.out: >�c->
+./src/cscope.out: = &c->
+./src/cscope.out:[c->
+./src/cscope.out:[c->
+./src/cscope.out:[c->
+./src/cscope.out: = c->
+./src/cscope.out:, (�em *�* c->
+./src/cscope.out: = c->
+./src/cscope.out: <�(c->
+./src/cscope.out: + c->
+./src/cscope.out:, '\n', c->
+./src/cscope.out: + c->
+./src/cscope.out:, c->
+./src/cscope.out: - c->
+./src/cscope.out: <�(c->
+./src/cscope.out: + c->
+./src/cscope.out: !�c->
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out: = c->
+./src/cscope.out: >�c->
+./src/cscope.out:, c->
+./src/cscope.out: = c->
+./src/cscope.out: - c->
+./src/cscope.out:, c->
+./src/cscope.out: + c->
+./src/cscope.out: < c->
+./src/cscope.out:[c->
+./src/cscope.out: < c->
+./src/cscope.out:[c->
+./src/cscope.out: > c->
+./src/cscope.out: ? c->rlbytes : c->rbytes;
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out: > c->
+./src/cscope.out: ? c->sbytes : c->rbytes;
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out: > c->
+./src/cscope.out: ? c->sbytes : c->rsize);
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out:, c->
+./src/cscope.out:(bc->
+./src/cscope.out: < bc->before)) {
+./src/cscope.out:(bc->
+./src/cscope.out:, bc->
+./src/cscope.out:(bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, &st) && st.st_mtime < bc->before)){
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out: =�0�bc->
+./src/cscope.out: - bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out: && bc->
+./src/cscope.out:, bc->
+./src/cscope.out: < bc->curr) {
+./src/cscope.out: >�bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->
+./src/cscope.out:(bc->
+./src/cscope.out:, bc->
+./src/cscope.out: && bc->
+./src/cscope.out:, bc->
+./src/cscope.out:, bc->wr�e_buf�+ 
+./src/cscope.out:, bc->
+./src/cscope.out:(bc->
+./src/cscope.out:(bc->
+./src/cscope.out: + bc->
+./src/cscope.out: > bc->
+./src/cscope.out:(bc->
+./src/cscope.out: + bc->
+./src/cscope.out: + bc->
+./src/cscope.out: + bc->
+./src/cscope.out:�| bc->
+./src/cscope.out:((Fmt*�* dc->
+./src/cscope.out:*�* dc->
+./src/cscope.out:(dc->
+./src/cscope.out:((�* dc->
+./src/cscope.out:, 0, (�* dc->
+./src/cscope.out:(dc->
+./src/cscope.out:((�* dc->
+./src/cscope.out:, 0, (�* dc->
+./src/cscope.out:(dc->di�[i]->fmt)�% dc->
+./src/cscope.out:(dc->di�_siz�* 2, 
+./src/cscope.out:(dc->di�, (Fmt*�* dc->
+./src/cscope.out:(dc->di�, (Fmt*�* 
+./src/cscope.out:(dc->rdict);
+./src/cscope.out:(dc->dict);
+./src/cscope.out:[dc->rdict[h]]->fmt) != 0) {
+./src/cscope.out: < dc->
+./src/cscope.out: = dc->
+./src/cscope.out: =�dc->
+./src/cscope.out: && dc->di�_siz�< 
+./src/cscope.out:	~<�dc-�edef.h
+./src/cscope.out:	~<b�s/libc-lock.h
+./src/cscope.out:	@/usr/include/stdc-predef.h
+./src/cscope.out:	@/usr/include/bits/libc-lock.h
+./src/cscope.out:/usr/include/stdc-predef.h
+./src/cscope.out:/usr/include/bits/libc-lock.h
+./src/codec.c:    dc->dict_size = DEFAULT_DICT_SIZE;
+./src/codec.c:    dc->dict = (Fmt**)malloc(sizeof(Fmt*) * dc->dict_size);
+./src/codec.c:    memset(dc->dict, 0, sizeof(Fmt*) * dc->dict_size);
+./src/codec.c:    dc->rdict_size = RDICT_SIZE(dc->dict_size);
+./src/codec.c:    dc->rdict = (short*)malloc(sizeof(short) * dc->rdict_size);
+./src/codec.c:    memset(dc->rdict, 0, sizeof(short) * dc->rdict_size);
+./src/codec.c:    dc->dict_used = 1;
+./src/codec.c:    for (i=1; i<dc->dict_used; i++) {
+./src/codec.c:        s += 1 + fmt_size(dc->dict[i]);
+./src/codec.c:    *(int*)buf = dc->dict_used;
+./src/codec.c:    for (i=1; i<dc->dict_used; i++) {
+./src/codec.c:        unsigned char s = fmt_size(dc->dict[i]);
+./src/codec.c:        memcpy(buf, dc->dict[i], s);
+./src/codec.c:    dc->rdict_size = RDICT_SIZE(dc->dict_size);
+./src/codec.c:    free(dc->rdict);
+./src/codec.c:    dc->rdict = (short*) malloc(sizeof(short) * dc->rdict_size);
+./src/codec.c:    memset(dc->rdict, 0, sizeof(short) * dc->rdict_size);
+./src/codec.c:    for (i=1; i<dc->dict_used; i++) {
+./src/codec.c:        uint32_t h = fnv1a(dc->dict[i]->fmt, strlen(dc->dict[i]->fmt)) % dc->rdict_size;
+./src/codec.c:        while (dc->rdict[h] > 0) {
+./src/codec.c:            if (h == dc->rdict_size) h = 0;
+./src/codec.c:        dc->rdict[h] = i;
+./src/codec.c:    dc->dict_size = min(dc->dict_size * 2, MAX_DICT_SIZE);
+./src/codec.c:    dc->dict = (Fmt**) realloc(dc->dict, sizeof(Fmt*) * dc->dict_size);
+./src/codec.c:    if (dc->dict_size < dict_size) {
+./src/codec.c:        dc->dict = (Fmt**) realloc(dc->dict, sizeof(Fmt*) * dict_size);
+./src/codec.c:        if (dc->dict == NULL) {
+./src/codec.c:        dc->dict_size = dict_size;
+./src/codec.c:    dc->dict_used = 1;
+./src/codec.c:        dc->dict[i] = (Fmt*)malloc(s);
+./src/codec.c:        if (dc->dict[i] == NULL) {
+./src/codec.c:        dc->dict_used ++;
+./src/codec.c:        memcpy(dc->dict[i], buf, s);
+./src/codec.c:    if (dc->rdict) free(dc->rdict);
+./src/codec.c:    for (i=1; i<dc->dict_used; i++)
+./src/codec.c:        free(dc->dict[i]);
+./src/codec.c:    if (dc->dict) free(dc->dict);
+./src/codec.c:            Fmt **dict = dc->dict;
+./src/codec.c:            uint32_t h = fnv1a(fmt, flen) % dc->rdict_size;
+./src/codec.c:            while (dc->rdict[h] > 0 && strcmp(fmt, dict[dc->rdict[h]]->fmt) != 0) {
+./src/codec.c:                if (h == dc->rdict_size) h = 0;
+./src/codec.c:            int rh = dc->rdict[h];
+./src/codec.c:                if (dc->dict_used < dc->dict_size) {
+./src/codec.c:                    dict[dc->dict_used] = (Fmt*) malloc(sizeof(Fmt) + flen - 7 + 1);
+./src/codec.c:                    dict[dc->dict_used]->nargs = m;
+./src/codec.c:                    memcpy(dict[dc->dict_used]->fmt, fmt, flen + 1);
+./src/codec.c:                    // fprintf(stderr, "new fmt %d: %s <= %s\n", dc->dict_used, fmt, src);
+./src/codec.c:                    dc->rdict[h] = rh = dc->dict_used ++;
+./src/codec.c:                    if (dc->dict_used == dc->dict_size && dc->dict_size < MAX_DICT_SIZE) {
+./src/codec.c:                    dc->rdict[h] = rh = -1; // not again
+./src/codec.c:        Fmt *f = dc->dict[idx];
+./src/bitcask.c:      bc->write_buffer + pos - bc->wbuf_start_pos就得到了这个record在write_buffer 
+./src/bitcask.c:  2.遍历目录下的所有files——根据hintfile——如果没有就是用datafile——来建立一个整体的bc->tree  
+./src/bitcask.c:    bc->mgr = mgr;
+./src/bitcask.c:    bc->depth = depth;
+./src/bitcask.c:    bc->pos = pos;
+./src/bitcask.c:    bc->before = before;
+./src/bitcask.c:    bc->bytes = 0;
+./src/bitcask.c:    bc->curr_bytes = 0;
+./src/bitcask.c:    bc->tree = NULL;
+./src/bitcask.c:    bc->last_snapshot = -1;
+./src/bitcask.c:    bc->curr_tree = ht_new(depth, pos);
+./src/bitcask.c:    bc->wbuf_size = 1024 * 4;
+./src/bitcask.c:    bc->write_buffer = malloc(bc->wbuf_size);
+./src/bitcask.c:    bc->last_flush_time = time(NULL);
+./src/bitcask.c:    pthread_mutex_init(&bc->buffer_lock, NULL);
+./src/bitcask.c:    pthread_mutex_init(&bc->write_lock, NULL);
+./src/bitcask.c:    pthread_mutex_init(&bc->flush_lock, NULL);
+./src/bitcask.c:    const char* base = mgr_base(bc->mgr);
+./src/bitcask.c:    const char* base = mgr_base(bc->mgr);/*default is return "testdb"*/
+./src/bitcask.c:                && (bc->before == 0 || st.st_mtime < bc->before)) {
+./src/bitcask.c:            bc->tree = ht_open(bc->depth, bc->pos, datapath);
+./src/bitcask.c:            if (bc->tree != NULL) {
+./src/bitcask.c:                bc->last_snapshot = i;
+./src/bitcask.c:    if (bc->tree == NULL) {
+./src/bitcask.c:        bc->tree = ht_new(bc->depth, bc->pos);
+./src/bitcask.c:        bc->bytes += st.st_size;
+./src/bitcask.c:        /*bc->last_snapshot 之前的数据，都已经被HTREE_FILE保存了*/
+./src/bitcask.c:        if (i <= bc->last_snapshot) continue;
+./src/bitcask.c:        if (bc->before == 0){
+./src/bitcask.c:                /*add hintpath's data to bc->tree */
+./src/bitcask.c:                scanHintFile(bc->tree, i, hintpath, NULL);
+./src/bitcask.c:                scanDataFile(bc->tree, i, datapath,
+./src/bitcask.c:                        new_path(hintpath, bc->mgr, HINT_FILE, i));
+./src/bitcask.c:                (st.st_mtime < bc->before || 0 == stat(datapath, &st) && st.st_mtime < bc->before)){
+./src/bitcask.c:                scanHintFile(bc->tree, i, hintpath, NULL); 
+./src/bitcask.c:                scanDataFileBefore(bc->tree, i, datapath, bc->before);
+./src/bitcask.c:    if (i - bc->last_snapshot > SAVE_HTREE_LIMIT) {
+./src/bitcask.c:        if (ht_save(bc->tree, new_path(datapath, bc->mgr, HTREE_FILE, i-1)) == 0) {
+./src/bitcask.c:            mgr_unlink(gen_path(NULL, base, HTREE_FILE, bc->last_snapshot));
+./src/bitcask.c:            bc->last_snapshot = i-1;
+./src/bitcask.c:    bc->curr = i;
+./src/bitcask.c:    if (bc->optimize_flag > 0) {
+./src/bitcask.c:        bc->optimize_flag = 2;
+./src/bitcask.c:        while (bc->optimize_flag > 0) {
+./src/bitcask.c:    pthread_mutex_lock(&bc->write_lock);
+./src/bitcask.c:    if (NULL != bc->curr_tree) {
+./src/bitcask.c:        if (bc->curr_bytes > 0) {
+./src/bitcask.c:            build_hint(bc->curr_tree, new_path(hintpath, bc->mgr, HINT_FILE, bc->curr));
+./src/bitcask.c:            ht_destroy(bc->curr_tree);
+./src/bitcask.c:        bc->curr_tree = NULL;
+./src/bitcask.c:    if (bc->curr_bytes == 0) bc->curr --;
+./src/bitcask.c:    if (bc->curr - bc->last_snapshot >= SAVE_HTREE_LIMIT) {
+./src/bitcask.c:        if (ht_save(bc->tree, new_path(datapath, bc->mgr, HTREE_FILE, bc->curr)) == 0) {
+./src/bitcask.c:            mgr_unlink(gen_path(datapath, mgr_base(bc->mgr), HTREE_FILE, bc->last_snapshot));
+./src/bitcask.c:    ht_destroy(bc->tree);
+./src/bitcask.c:    mgr_destroy(bc->mgr);
+./src/bitcask.c:    free(bc->write_buffer);
+./src/bitcask.c:    gen_path(path, mgr_base(bc->mgr), DATA_FILE, bucket);
+./src/bitcask.c:   在经过一段时间的运行后，新的bc->tree会新增或者删除一些节点，原来的datafile中的记录有可能就  
+./src/bitcask.c: 2.调用record.c中的optimizeDataFile，这个函数会比较hintfile中的tree跟bc->tree的不同  
+./src/bitcask.c: 3.如果需要optimize，那么从datafile中读取DataRecord，并在bc->tree中查找看是否有必要保留  
+./src/bitcask.c:   也就是本函数的cur_tree中，我们需要遍历cur_tree，反过来更新bc->tree  
+./src/bitcask.c:    bc->optimize_flag = 1;
+./src/bitcask.c:    const char *base = mgr_base(bc->mgr);
+./src/bitcask.c:    for (i=0; i < bc->curr; i++) {
+./src/bitcask.c:    bc->last_snapshot = -1;
+./src/bitcask.c:    for (i=0; i < bc->curr && bc->optimize_flag == 1; i++) {
+./src/bitcask.c:                HTree *tree = ht_new(bc->depth, bc->pos);
+./src/bitcask.c:                args.tree = bc->tree;
+./src/bitcask.c:        int deleted = count_deleted_record(bc->tree, i, hintpath, &total);
+./src/bitcask.c:            new_path(ldpath, bc->mgr, DATA_FILE, last);
+./src/bitcask.c:            new_path(lhpath, bc->mgr, HINT_FILE, last);
+./src/bitcask.c:            recoverd = optimizeDataFile(bc->tree, i, datapath, hintpath, 
+./src/bitcask.c:            recoverd = optimizeDataFile(bc->tree, i, datapath, hintpath, 
+./src/bitcask.c:        pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:        bc->bytes -= recoverd;
+./src/bitcask.c:        pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:    pthread_mutex_lock(&bc->write_lock);
+./src/bitcask.c:    pthread_mutex_lock(&bc->flush_lock);
+./src/bitcask.c:    if (i == bc->curr && ++last < bc->curr) {
+./src/bitcask.c:        gen_path(opath, base, DATA_FILE, bc->curr);
+./src/bitcask.c:            args.tree = bc->tree;
+./src/bitcask.c:            ht_visit(bc->curr_tree, update_item_pos, &args);
+./src/bitcask.c:        bc->curr = last;
+./src/bitcask.c:    pthread_mutex_unlock(&bc->flush_lock);
+./src/bitcask.c:    pthread_mutex_unlock(&bc->write_lock);
+./src/bitcask.c:    bc->optimize_flag = 0;
+./src/bitcask.c:    Item *item = ht_get(bc->tree, key);
+./src/bitcask.c:    if (bucket > bc->curr) {
+./src/bitcask.c:        fprintf(stderr, "BUG: invalid bucket %d > %d\n", bucket, bc->curr);
+./src/bitcask.c:        ht_remove(bc->tree, key);
+./src/bitcask.c:    if (bucket == bc->curr) {
+./src/bitcask.c:        pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:        if (bucket == bc->curr && pos >= bc->wbuf_start_pos){
+./src/bitcask.c:            uint32_t p = pos - bc->wbuf_start_pos;
+./src/bitcask.c:            r = decode_record(bc->write_buffer + p, bc->wbuf_curr_pos - p, true);
+./src/bitcask.c:        pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:    const char * path = mgr_base(bc->mgr);
+./src/bitcask.c:        if (bc->optimize_flag == 0)
+./src/bitcask.c:            if (bc->optimize_flag == 0)
+./src/bitcask.c:    if (NULL == r && bc->optimize_flag == 0)
+./src/bitcask.c:        ht_remove(bc->tree, key);
+./src/bitcask.c:    new_path(hintpath, bc->mgr, HINT_FILE, bc->curr);
+./src/bitcask.c:    args->tree = bc->curr_tree;
+./src/bitcask.c:    bc->curr ++;
+./src/bitcask.c:    bc->curr_tree = ht_new(bc->depth, bc->pos);
+./src/bitcask.c:    bc->wbuf_start_pos = 0;
+./src/bitcask.c:    if (bc->curr >= MAX_BUCKET_COUNT) {
+./src/bitcask.c:    pthread_mutex_lock(&bc->flush_lock);
+./src/bitcask.c:    pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:    if (bc->wbuf_curr_pos > limit * 1024 || 
+./src/bitcask.c:        now > bc->last_flush_time + flush_period && bc->wbuf_curr_pos > 0) {
+./src/bitcask.c:        uint32_t size = bc->wbuf_curr_pos;
+./src/bitcask.c:        memcpy(tmp, bc->write_buffer, size);
+./src/bitcask.c:        pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:        new_path(buf, bc->mgr, DATA_FILE, bc->curr);
+./src/bitcask.c:        if (last_pos > 0 && last_pos != bc->wbuf_start_pos) {
+./src/bitcask.c:            fprintf(stderr, "last pos not match: %"PRIu64" != %d in %s\n", last_pos, bc->wbuf_start_pos, buf);
+./src/bitcask.c:        bc->last_flush_time = now;
+./src/bitcask.c:        pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:        bc->bytes += n;
+./src/bitcask.c:        bc->curr_bytes += n;
+./src/bitcask.c:        if (n < bc->wbuf_curr_pos) {
+./src/bitcask.c:            memmove(bc->write_buffer, bc->write_buffer + n, bc->wbuf_curr_pos - n);
+./src/bitcask.c:        bc->wbuf_start_pos += n;
+./src/bitcask.c:        bc->wbuf_curr_pos -= n;
+./src/bitcask.c:        if (bc->wbuf_curr_pos == 0) {
+./src/bitcask.c:            if (bc->wbuf_size < WRITE_BUFFER_SIZE) {
+./src/bitcask.c:                bc->wbuf_size *= 2;
+./src/bitcask.c:                free(bc->write_buffer);
+./src/bitcask.c:                bc->write_buffer = malloc(bc->wbuf_size);
+./src/bitcask.c:            } else if (bc->wbuf_size > WRITE_BUFFER_SIZE * 2) {
+./src/bitcask.c:                bc->wbuf_size = WRITE_BUFFER_SIZE;
+./src/bitcask.c:                free(bc->write_buffer);
+./src/bitcask.c:                bc->write_buffer = malloc(bc->wbuf_size);
+./src/bitcask.c:        if (bc->wbuf_start_pos + bc->wbuf_size > MAX_BUCKET_SIZE) {
+./src/bitcask.c:    pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:    pthread_mutex_unlock(&bc->flush_lock);
+./src/bitcask.c:    pthread_mutex_lock(&bc->write_lock);
+./src/bitcask.c:    Item *it = ht_get(bc->tree, key);
+./src/bitcask.c:                if (it->pos & 0xff == bc->curr){
+./src/bitcask.c:                    ht_add(bc->curr_tree, key, it->pos, it->hash, ver);
+./src/bitcask.c:                ht_add(bc->tree, key, it->pos, it->hash, ver);
+./src/bitcask.c:    pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:    if (bc->wbuf_curr_pos + rlen > bc->wbuf_size) {
+./src/bitcask.c:        pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:        pthread_mutex_lock(&bc->buffer_lock);
+./src/bitcask.c:        while (rlen > bc->wbuf_size) {
+./src/bitcask.c:            bc->wbuf_size *= 2;
+./src/bitcask.c:            free(bc->write_buffer);
+./src/bitcask.c:            bc->write_buffer = malloc(bc->wbuf_size);
+./src/bitcask.c:        if (bc->wbuf_start_pos + bc->wbuf_size > MAX_BUCKET_SIZE) {
+./src/bitcask.c:    memcpy(bc->write_buffer + bc->wbuf_curr_pos, rbuf, rlen);
+./src/bitcask.c:    int pos = (bc->wbuf_start_pos + bc->wbuf_curr_pos) | bc->curr;
+./src/bitcask.c:    bc->wbuf_curr_pos += rlen;
+./src/bitcask.c:    pthread_mutex_unlock(&bc->buffer_lock);
+./src/bitcask.c:    ht_add(bc->curr_tree, key, pos, hash, ver);
+./src/bitcask.c:    ht_add(bc->tree, key, pos, hash, ver);
+./src/bitcask.c:    pthread_mutex_unlock(&bc->write_lock);
+./src/bitcask.c:    return ht_get_hash(bc->tree, pos, count);
+./src/bitcask.c:    return ht_list(bc->tree, pos, prefix);
+./src/bitcask.c:    ht_get_hash(bc->tree, "@", &total);
+./src/bitcask.c:    if (NULL != curr && NULL != bc->curr_tree) {
+./src/bitcask.c:        ht_get_hash(bc->curr_tree, "@", curr);
+./src/bitcask.c:        *bytes = bc->bytes;
+./src/thread.c:            if (update_event(fd, c->ev_flags, c)) conn_close(c);
+./src/htree.c:        rr->key[len] = 0; // c-str
+./src/clock_gettime_stub.c: *  rdtsc-workaround: http://www.mcs.anl.gov/~kazutomo/rdtsc.html
+匹配到二进制文件 ./.git/objects/80/520e4f46b7ebce6ffc5f916b255d21bc1fccc3
+匹配到二进制文件 ./.git/objects/pack/pack-86e4358099deeccaa930d7ea9e176edc05032859.pack
+匹配到二进制文件 ./.git/objects/dc/e6b9e6dc54fa13aff85218e1f08e84390702f2
+匹配到二进制文件 ./.git/objects/f9/39fdef5c1e5432bd6f0bb7b43ba0093ad967e7
+匹配到二进制文件 ./.git/objects/45/cc428aeeef58f890a91d8b1928073e8864b241
+./.git/hooks/pre-rebase.sample:	topic=`git symbolic-ref HEAD` ||
+./.git/hooks/pre-rebase.sample:	       /   /   c---c---c---c B         /
+./Makefile.in:	install-dvi-recursive install-exec-recursive \
+./Makefile.in:	  && dc_destdir="$${TMPDIR-/tmp}/am-dc-$$$$/" \
+./Makefile.in:install-exec: install-exec-recursive
+./Makefile.in:	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+./Makefile.in:install-exec-am: install-binPROGRAMS
+./Makefile.in:	install-exec-am install-html install-html-am install-info \

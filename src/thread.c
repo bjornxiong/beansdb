@@ -31,7 +31,7 @@
 #include <pthread.h>
 
 typedef struct EventLoop {
-    conn* conns[AE_SETSIZE];
+    conn* conns[AE_SETSIZE];/*store server conn and client conns */
     int   fired[AE_SETSIZE];/*value is seted in ae_xxx.c:aeApiPoll*/
     int   nready;
     void *apidata;
@@ -194,7 +194,6 @@ AGAIN:
             close(fd);
             goto AGAIN;
         }
-        //loop.conns[fd] = NULL; 
         pthread_mutex_unlock(&leader);
         
         if (drive_machine(c)) {
