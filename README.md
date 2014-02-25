@@ -14,7 +14,7 @@ Stupid (KISS).
 
 * 对于beansdb的分析文章，我还在整理，目前文章主要在我的evernote里面。由于学业很忙，估计迟点时间才会全部发布到我的blog。
 
-    目前先贴一篇简文地址：http://blog.csdn.net/l402398703/article/details/19371515
+    目前先贴一篇简文地址：http://blog.csdn.net/l402398703/article/details/19903733
 
 * 对于beansdb的源码。我有过一些大胆的修改。但是，效果不好，还在思考更好的思路。如果朋友们有更好的思路，请在git通知我或者邮件我。
     
