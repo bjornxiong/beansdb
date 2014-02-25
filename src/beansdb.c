@@ -249,10 +249,10 @@ conn *conn_new(const int sfd, const int init_state, const int read_buffer_size) 
         c->msglist = 0;
 
         c->rsize = read_buffer_size;
-        c->wsize = DATA_BUFFER_SIZE;
-        c->isize = ITEM_LIST_INITIAL;
-        c->iovsize = IOV_LIST_INITIAL;
-        c->msgsize = MSG_LIST_INITIAL;
+        c->wsize = DATA_BUFFER_SIZE;  /*2048*/
+        c->isize = ITEM_LIST_INITIAL; /*200*/
+        c->iovsize = IOV_LIST_INITIAL;/*400*/
+        c->msgsize = MSG_LIST_INITIAL;/*10*/
 
         c->rbuf = (char *)malloc((size_t)c->rsize);
         c->wbuf = (char *)malloc((size_t)c->wsize);
@@ -663,6 +663,10 @@ static size_t tokenize_command(char *command, token_t *tokens, const size_t max_
 
     assert(command != NULL && tokens != NULL && max_tokens > 1);
 
+    /*
+      change : set hello 0 0 5\nworld\0
+      to     : set\0hello\00\00\05world\0
+     */
     for (s = e = command; ntokens < max_tokens - 1; ++e) {
         if (*e == ' ') {
             if (s != e) {
@@ -913,6 +917,7 @@ static inline void process_get_command(conn *c, token_t *tokens, size_t ntokens)
         out_string(c, "SERVER_ERROR out of memory writing get response");
     }
     else {
+        /*state change to conn_mwrite*/
         conn_set_state(c, conn_mwrite);
         c->msgcurr = 0;
     }
@@ -1100,7 +1105,7 @@ static void process_command(conn *c, char *command) {
     ntokens = tokenize_command(command, tokens, MAX_TOKENS);
     if (ntokens >= 3 &&
         (strcmp(tokens[COMMAND_TOKEN].value, "get") == 0) ) {
-
+        
         process_get_command(c, tokens, ntokens);
 
     } else if ((ntokens == 6 || ntokens == 7) &&

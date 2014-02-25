@@ -110,8 +110,8 @@ struct stats {
     uint64_t      get_hits;
     uint64_t      get_misses;
     time_t        started;          /* when the process was started */
-    uint64_t      bytes_read;
-    uint64_t      bytes_written;
+    uint64_t      bytes_read;       /*total bytes read    */
+    uint64_t      bytes_written;    /*total bytes written*/
 };
 
 #define MAX_VERBOSITY_LEVEL 2
